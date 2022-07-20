@@ -10,7 +10,7 @@ module.exports = class ProductController {
     res.render("products/create");
   }
 
-  static createProductPost(req, res) {
+  static async createProductPost(req, res) {
     const name = req.body.name;
     const image = req.body.image;
     const price = req.body.price;
@@ -18,7 +18,7 @@ module.exports = class ProductController {
 
     const product = new Product(name, image, price, description);
 
-    product.save();
+    await product.save();
 
     res.redirect("/products");
   }
